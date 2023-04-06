@@ -1,0 +1,59 @@
+.signin-container {
+    min-height: 94.2vh;
+    background:white;
+}
+.signin-container > .form-container{
+    box-shadow: rgba(149, 157, 165, 10) 0px 8px 24px;
+    border-radius: 20px;
+}
+
+.signin-container form {
+    font: 500 20px/24px Google Sans Text,Arial,Helvetica,sans-serif;
+}
+
+.signin-container .fpassword {
+   color: blue !important;
+}
+
+.form-check-input{
+    margin-top: 0 !important;
+}
+
+
+
+@media screen and (max-width: 1280px) {
+    .signin-container{
+        box-sizing: border-box;
+        padding: 1rem;
+    }
+  .signin-container > div{
+    width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+    .signin-container{
+        box-sizing: border-box;
+        padding: 1rem;
+    }
+  .signin-container > div{
+    width: 100% !important;
+  }
+  .signin-container > div form {
+    padding-inline: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .signin-container{
+        box-sizing: border-box;
+        padding: 1rem;
+    }
+  .signin-container > div{
+    width: 100% !important;
+  }
+
+  /* .signin-container > div form {
+    padding-inline: 1rem !important;
+  } */
+}

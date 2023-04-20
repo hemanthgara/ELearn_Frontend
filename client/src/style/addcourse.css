@@ -11,7 +11,13 @@
    font-size: 1.5rem !important;
 }
 
+.addcourse-container form {
+    font: 500 20px/24px Google Sans Text,Arial,Helvetica,sans-serif;
+}
 
+.addcourse-container .fpassword {
+   color: blue !important;
+}
 
 .form-check-input{
     margin-top: 0 !important;

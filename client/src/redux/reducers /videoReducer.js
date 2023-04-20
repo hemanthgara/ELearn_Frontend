@@ -13,6 +13,11 @@ const videoReducer = (state = initialState, action) => {
         video: [...state.video, action.payload],
       };
    
+    case FETCH_VIDEO:
+      return {
+        ...state,
+        fetchVideo: action.payload,
+      };
 
     default:
       return state;

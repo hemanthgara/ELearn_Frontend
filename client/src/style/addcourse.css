@@ -1,0 +1,54 @@
+.addcourse-container {
+    min-height: 93.2vh;
+    padding-top: 75px;
+}
+.addcourse-container > div{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 20px;
+}
+
+.form-control {
+   font-size: 1.5rem !important;
+}
+
+
+
+.form-check-input{
+    margin-top: 0 !important;
+}
+
+
+
+@media screen and (max-width: 1280px) {
+    .addcourse-container{
+        box-sizing: border-box;
+    }
+  .addcourse-container > div{
+    width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+    .addcourse-container{
+        box-sizing: border-box;
+    }
+  .addcourse-container > div{
+    width: 100% !important;
+  }
+  .addcourse-container > div form {
+    padding-inline: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .addcourse-container{
+        box-sizing: border-box;
+    }
+  .addcourse-container > div{
+    width: 100% !important;
+  }
+
+  /* .addcourse-container > div form {
+    padding-inline: 1rem !important;
+  } */
+}

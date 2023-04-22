@@ -12,7 +12,11 @@ const videoReducer = (state = initialState, action) => {
         ...state,
         video: [...state.video, action.payload],
       };
-   
+    case SHOW_VIDEO:
+      return {
+        ...state,
+        video: { ...action.payload },
+      };
     case FETCH_VIDEO:
       return {
         ...state,

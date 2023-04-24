@@ -114,7 +114,12 @@
     .courseTable .table-wrapper .fl-table tbody tr {
         display: table-cell;
     }
-   
+    .courseTable .table-wrapper .fl-table tbody tr:nth-child(odd) {
+        background: none;
+    }
+    .courseTable .table-wrapper .fl-table tr:nth-child(even) {
+        background: transparent;
+    }
     .courseTable .table-wrapper .fl-table tr td:nth-child(odd) {
         background: #F8F8F8;
         border-right: 1px solid #E6E4E4;

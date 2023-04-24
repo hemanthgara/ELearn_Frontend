@@ -127,4 +127,14 @@ export const QuestionValidation = Yup.object({
 });
 
 
+export const ForgetPasswordFormValidation = Yup.object({
+  otp: Yup.string().required("Required"),
 
+  new_password: Yup.string()
+    .required("Password is required")
+    .min(8, "password must contain 8 or more characters"),
+
+  confirm_password: Yup.string()
+    .required("Password is required")
+    .min(8, "password must contain 8 or more characters"),
+});

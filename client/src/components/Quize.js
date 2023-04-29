@@ -80,16 +80,6 @@ const Quize = (props) => {
             answer: ""
           }
         })
-        if (res.status === 200) {
-          if (res.data.data.length === 0) {
-            setIsQuize(false)
-          } else {
-            const ids = res.data.data.map((quize) => {
-              return quize._id;
-            })
-            if (ids.length > 0) {
-              setQuestionNO(1);
-            }
       })
     }
   }, [question])
@@ -173,12 +163,6 @@ const Quize = (props) => {
                     <label className="px-3" htmlFor={`option4-${data._id}`}>
                       {data.option4}
                     </label>
-                    <div className="options fs-3 py-3 px-3 d-flex align-items-center">
-                    <input className="fs-3" type="radio" name={data._id} id={`option2-${data._id}`} value="option2" onChange={handleChange} checked={totalAnswers.answers[questionNo - 1].answer === "option2"} />
-                    <label className="px-3" htmlFor={`option2-${data._id}`}>
-                      {data.option2}
-                    </label>
-                  </div>
                   </div>
                 </div>
             })}

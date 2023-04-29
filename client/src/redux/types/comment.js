@@ -1,0 +1,6 @@
+export const ADD_COMMENT = "ADD_COMMENT";
+export const SHOW_COMMENT = "SHOW_COMMENT";
+export const FETCHING_COMMENT = "FETCHING_COMMENT";
+
+export const ADD_REPLIES = "ADD_REPLIES";
+export const SHOW_REPLIES = "SHOW_REPLIES";

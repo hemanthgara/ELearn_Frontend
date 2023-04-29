@@ -1,0 +1,24 @@
+.videodetail-container{
+    min-height: 94.3vh;
+    padding-top: 75px;
+ }
+ 
+ .videodetail-container video{
+    max-height: 342px;
+    min-height: 342px;
+ }
+ 
+ .video-commments-container{
+    overflow-y: auto;
+    max-height: 35vh;
+ }
+ 
+ .timestamp{
+    transition: all .1s;
+ }
+ 
+ .hide{
+    opacity: 0;
+    z-index: 0;
+ }
+ 

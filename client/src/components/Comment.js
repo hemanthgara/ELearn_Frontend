@@ -9,7 +9,9 @@ import CommentReplyForm from "./CommentReplyForm";
 import { getApi } from "../helper/apiHelper";
 import { SHOW_COMMENT, SHOW_REPLIES, FETCHING_COMMENT } from "../redux/types/comment";
 
-
+import "../style/comment.css";
+import { FaReplyAll, FaUserEdit } from "react-icons/fa";
+// import { useFormik } from "formik";
 
 const Comment = ({ id = "" }) => {
   const dispatch = useDispatch();
@@ -37,6 +39,20 @@ const Comment = ({ id = "" }) => {
           return comment._id;
         })
 
+        if (commentId.length > 0) {
+
+          let allReply = [];
+          for (let i = 0; i < commentId.length; i++) {
+            const res = await getApi(`/api/replies/${commentId[i]}`)
+            if (res.status === 200) {
+              allReply = [...allReply, ...res.data.data]
+            }
+          }
+
+          dispatch({ type: SHOW_COMMENT, payload: allComments });
+          dispatch({ type: SHOW_REPLIES, payload: allReply });
+
+        }
       }
       dispatch({ type: FETCHING_COMMENT, payload: false })
     }
@@ -47,7 +63,8 @@ const Comment = ({ id = "" }) => {
       dispatch({ type: FETCHING_COMMENT, payload: true })
       getALLQueriesAndReply().then((res) => {
         dispatch({ type: SHOW_COMMENT, payload: res[0].data.data });
-        
+        dispatch({ type: SHOW_REPLIES, payload: res[1].data.data });
+        dispatch({ type: FETCHING_COMMENT, payload: false })
       });
     } else {
       getCommentsByVideoId(id)

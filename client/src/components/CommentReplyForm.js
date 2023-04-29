@@ -40,7 +40,17 @@ const CommentReplyForm = ({ comment, setReplyCommentId }) => {
                     <input type="text" className=" d-none" name={"comment_id"} value={values.comment_id} disabled />
                 </div>
 
-                
+                <div className="w-75 mx-2">
+                    <input type="text" className=" d-none" name={"video_id"} value={values.video_id} disabled />
+                </div>
+
+                <div className="form-floating">
+                    <textarea className="form-control m-auto w-50" name={"message"} placeholder="Leave a comment here" cols={25} value={values.message} onChange={handleChange} style={{ minHeight: '5rem', maxHeight: '5rem' }}></textarea>
+                    <label className="w-50 text-center" htmlFor="floatingTextarea" style={{ marginLeft: '80px' }} >reply</label>
+                </div>
+                <div className=" m-auto w-50 text-end py-2">
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </div>
             </div>
         </form>
     )

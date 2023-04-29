@@ -1,0 +1,9 @@
+.queries-container{
+    min-height: 93.5vh;
+    padding-block: 100px 20px;
+}
+
+.queries-container .query-comment-list{
+    max-height: 79vh;
+    overflow-y: auto;
+}

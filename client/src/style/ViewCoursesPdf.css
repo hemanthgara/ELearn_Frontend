@@ -1,0 +1,17 @@
+.viewcoursepdf {
+    min-height: 93.2vh;
+}
+
+.viewcoursepdf .course-container {
+    margin-top: 130px;
+}
+
+.viewcoursepdf .course-container .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.viewcoursepdf .course-container .wrapper .card .card-body {
+    background: #e5e5eb;
+    ;
+}

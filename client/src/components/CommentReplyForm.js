@@ -20,7 +20,17 @@ const CommentReplyForm = ({ comment, setReplyCommentId }) => {
         }
     }
 
-  
+    const { values, handleChange, handleSubmit } = useFormik({
+        initialValues: {
+            comment_id: comment._id,
+            message: "",
+            video_id: comment.video_id
+        },
+
+        onSubmit: (values, { resetForm }) => {
+            handleOnSubmit(values, resetForm)
+        }
+    })
 
 
     return (

@@ -1,0 +1,62 @@
+.question-container {
+    min-height: 93.2vh;
+}
+.question-container > div{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 20px;
+}
+
+.form-control {
+   font-size: 1.5rem !important;
+}
+
+.question-container form {
+    font: 500 20px/24px Google Sans Text,Arial,Helvetica,sans-serif;
+}
+
+.question-container .fpassword {
+   color: blue !important;
+}
+
+.form-check-input{
+    margin-top: 0 !important;
+}
+
+
+
+@media screen and (max-width: 1280px) {
+    .question-container{
+        box-sizing: border-box;
+        padding: 1rem;
+    }
+  .question-container > div{
+    width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+    .question-container{
+        box-sizing: border-box;
+        padding: 1rem;
+    }
+  .question-container > div{
+    width: 100% !important;
+  }
+  .question-container > div form {
+    padding-inline: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .question-container{
+        box-sizing: border-box;
+        padding: 1rem;
+    }
+  .question-container > div{
+    width: 100% !important;
+  }
+
+  /* .question-container > div form {
+    padding-inline: 1rem !important;
+  } */
+}

@@ -1,0 +1,78 @@
+/* .addCourseContent-container .form-container {
+  min-height: 81.5vh;
+} */
+
+.addCourseContent-container .modal-dialog{
+  max-width: 900px !important;
+}
+
+.addCourseContent-container .modal-content{
+  padding-inline: 50px;
+}
+.addCourseContent-container .modal-header{
+  display: unset;
+}
+
+.addCourseContent-container .form-container>div {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 20px;
+}
+
+.form-control {
+  font-size: 1.5rem !important;
+}
+
+.addCourseContent-container .form-container form {
+  font: 500 20px/24px Google Sans Text, Arial, Helvetica, sans-serif;
+}
+
+.addCourseContent-container .form-container .fpassword {
+  color: blue !important;
+}
+
+.form-check-input {
+  margin-top: 0 !important;
+}
+
+
+
+@media screen and (max-width: 1280px) {
+  .addCourseContent-container .form-container {
+    box-sizing: border-box;
+    padding: 1rem;
+  }
+
+  .addCourseContent-container .form-container>div {
+    width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .addCourseContent-container .form-container {
+    box-sizing: border-box;
+    padding: 1rem;
+  }
+
+  .addCourseContent-container .form-container>div {
+    width: 100% !important;
+  }
+
+  .addCourseContent-container .form-container>div form {
+    padding-inline: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .addCourseContent-container .form-container {
+    box-sizing: border-box;
+    padding: 1rem;
+  }
+
+  .addCourseContent-container .form-container>div {
+    width: 100% !important;
+  }
+
+  /* .addCourseContent-container .form-container > div form {
+    padding-inline: 1rem !important;
+  } */
+}

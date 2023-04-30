@@ -370,4 +370,4 @@ const AddCourseContent = ({ _id, language }) => {
   );
 };
 
-export default AddCourseContent;
+

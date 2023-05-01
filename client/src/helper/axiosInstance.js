@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { clearCookies } from "./getCookie";
 
 export const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
@@ -20,21 +21,38 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log(error)
+    console.log(error);
+
+    if (
+      error?.response?.config.url === "/api/register" &&
+      error.response.status === 500
+    ) {
+      toast.error("User already exists");
+      return;
+    }
 
     if (error.code === "ERR_NETWORK") {
       toast.error(error.message);
-      return
+
+      if (error?.config?.url === "/api/me") {
+        return {
+          data: {
+            status: 500,
+          },
+        };
+      }
+
+      clearCookies();
+      return;
     }
 
     if (error.response.status === 409) {
       return {
         data: {
-          ...error.response
-        }
-      }
+          ...error.response,
+        },
+      };
     }
-
 
     if (error.response.status === 400) {
       if (error.response?.message) {
@@ -45,26 +63,23 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 401) {
       toast.error("Unauthorized access!!!");
       // document.cookie = "token=; path=/;";
-      (function(){document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); })();
+      clearCookies();
       window.location.href = "/signin";
 
-      return
+      return;
     }
 
     if (error.response.status === 500) {
-      toast.error('Internal server error');
-      return
-    }
-    else {
+      toast.error("Internal server error");
+      return;
+    } else {
       if (error?.response?.data?.message) {
         toast.error(error.response.data.message);
-        return
-      }
-      else {
+        return;
+      } else {
         toast.error("Internal server error");
-        return
+        return;
       }
     }
-
   }
 );

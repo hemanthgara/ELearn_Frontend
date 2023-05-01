@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Footer from "./componenets/Footer";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./App.css";
 
-// import Test from './pages/Test'
 
 import { PrivateRoute } from "./helper/PrivateRoute";
 import Header from "./componenets/Header";
@@ -17,11 +18,9 @@ import ViewQueries from "./pages/ViewQueries";
 import Signup from "./pages/Signup";
 import Facilitator from "./pages/Facilitator";
 import HelpDesk from "./pages/HelpDesk";
-// import { useDispatch } from "react-redux";
-// import Cookies from "universal-cookie";
+import ViewCoursesPdf from './pages/ViewCoursesPdf'
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import VideoDetail from "./pages/VideoDetail";
 import ShowContent from "./pages/ShowContent";
 import ErrorPage from "./pages/ErrorPage";
@@ -55,13 +54,16 @@ function App() {
           <Route index element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="addcourse" element={<AddCourse />} />
+
           <Route path="viewcourse" element={<ViewCourse />} />
+          <Route path="viewcourse/showcontent/:id" element={<ShowContent />} />
+          <Route path="/viewcourse/showcontent/videodetail/:id" element={<VideoDetail />} />
+
           <Route path="viewqueries" element={<ViewQueries />} />
+          <Route path="bag-pack" element={<ViewCoursesPdf />} />
           <Route path="helpdesk" element={<HelpDesk />} />
 
 
-          <Route path="videodetail/:id" element={<VideoDetail />} />
-          <Route path="showcontent/:id" element={<ShowContent />} />
           <Route path="profile" element={<Profile />} />
 
           <Route path="addQuestion/:id" element={<AddQuestion />} />

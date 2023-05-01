@@ -23,7 +23,6 @@ import { toast } from "react-toastify";
 
 const VideoDetail = () => {
   const viewer = useRef(null);
-  const videoFetch = useRef(false);
   const dispatch = useDispatch();
   const { video, fetchVideo } = useSelector((state) => state.videoReducer);
   const { role } = useSelector((state) => state.authReducer);
@@ -85,16 +84,16 @@ const VideoDetail = () => {
   }
 
   useEffect(() => {
-    videoFetch.current = true;
-    dispatch({ type: SHOW_VIDEO, payload: {} });
-    dispatch({ type: FETCH_VIDEO, payload: true });
-
     getApi(`/api/videoCollections/${id}`).then((res) => {
       dispatch({ type: SHOW_VIDEO, payload: res.data.data });
       dispatch({ type: FETCH_VIDEO, payload: false });
-      videoFetch.current = false;
     });
-  }, [id]);
+
+    return () => {
+      dispatch({ type: SHOW_VIDEO, payload: {} });
+      dispatch({ type: FETCH_VIDEO, payload: true });
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -122,6 +121,14 @@ const VideoDetail = () => {
         },
         viewer.current
       ).then(async (instance) => {
+
+        instance.UI.disableElements(['toolbarGroup-View', 'toolbarGroup-Shapes', 'toolbarGroup-Insert', 'toolbarGroup-Edit', 'toolbarGroup-FillAndSign','toolbarGroup-Forms', 'underlineToolGroupButton', 'shapeToolGroupButton', 'shapeToolGroupButton', 'freeTextToolGroupButton', 'freeHandHighlightToolGroupButton', 'freeHandToolGroupButton','squigglyToolGroupButton', 'strikeoutToolGroupButton', 'eraserToolButton', 'leftPanelButton','viewControlsButton', 'selectToolButton']);
+        // instance.UI.enableElements([
+        //   "highlightToolGroupButton",
+        //   "stickyToolGroupButton",
+        //   "toggleNotesButton"
+        // ]);
+
         const { documentViewer, annotationManager, Annotations } =
           instance.Core;
 
@@ -141,8 +148,7 @@ const VideoDetail = () => {
           for (let i = 0; i < anotListRes.data.data.length; i++) {
             const element = anotListRes.data.data[i];
             let annot = null;
-
-            if (element.ToolName === "AnnotationCreateSticky") {
+            if (element.ToolName.includes("AnnotationCreateSticky")) {
               annot = new Annotations.StickyAnnotation({
                 Id: element.Id,
                 Contents: element.Contents,
@@ -207,7 +213,7 @@ const VideoDetail = () => {
           "annotationChanged",
           (annotations, action) => {
             if (!isAnnoloaded) return;
-
+  
             const url = `http://localhost:4000/api/annotations?action=${action}&targetId=${id}`;
 
             const formatedAnot = annotations
@@ -252,7 +258,7 @@ const VideoDetail = () => {
       });
     };
 
-    if (!video?.documentFile_URL || videoFetch.current) {
+    if (!video?.documentFile_URL || fetchVideo) {
       return;
     }
     fetchData();
@@ -327,7 +333,6 @@ const VideoDetail = () => {
                 </video>
               </div>
 
-
               {role === "student" && (
                 <>
                   <div className="query-container col-md-6 p-0">
@@ -342,7 +347,7 @@ const VideoDetail = () => {
                             placeholder="Time"
                             value={values.time}
                             onChange={() => {
-                              return
+                              return;
                             }}
                             onClick={() => {
                               setShowTimeStamp(!showTimeStamp);
@@ -436,7 +441,6 @@ const VideoDetail = () => {
                             placeholder="Title"
                             value={values["title"]}
                             onFocus={() => {
-                              
                               setShowTimeStamp(false);
                               if (vCurrentTime.split(":").length === 2) {
                                 setMinute(`${vCurrentTime.split(":")[0]}`);
@@ -501,12 +505,15 @@ const VideoDetail = () => {
 
               {/* <iframe className='col-12 mt-2' width={1000} height={450} src={`${process.env.REACT_APP_SERVER_URL}${video?.documentFile_URL}`}>
               </iframe> */}
-              {fetchVideo.current ? <span>Please wait...</span> : <div
-                className="webviewer"
-                ref={viewer}
-                style={{ height: "100vh" }}
-              ></div>}
-              
+              {fetchVideo ? (
+                <span>Please wait...</span>
+              ) : (
+                <div
+                  className="webviewer"
+                  ref={viewer}
+                  style={{ height: "100vh" }}
+                ></div>
+              )}
             </div>
 
             <div className="container my-2">

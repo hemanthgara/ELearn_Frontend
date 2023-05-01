@@ -1,0 +1,10 @@
+.showcontent-container {
+    min-height: 92vh;
+    padding-top: 81px;
+}
+
+.showcontent-container .contents .content-thumb {
+    height: 130px;
+    width: 100%;
+    object-fit: cover;
+}

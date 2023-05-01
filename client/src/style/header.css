@@ -1,0 +1,58 @@
+.navigation-container {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.navigation-container > header{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: fixed;
+    top: 0;
+    left: 0•••••••••••••••;
+    width: 100%;
+    z-index: 1;
+    background: white;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.main-nav {
+    background: #272C3F !important;
+}
+
+.navbar-toggler {
+    display: none;
+    margin-left: 30px;
+    font-size: 2rem;
+}
+
+.signup-list.active {
+    opacity: .8;
+}
+
+.signup-list.show {
+    color: white;
+}
+
+@media screen and (max-width: 1199px) {
+    .navigation-container>header {
+        padding-inline: 1rem !important;
+    }
+
+    .navigation-container>header .nav {
+        font-size: 1rem !important;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .navigation-container>header {
+        padding-inline: 1rem !important;
+        flex-direction: column-reverse !important;
+    }
+
+    .navigation-container>header .nav {
+        flex-direction: column !important;
+    }
+}

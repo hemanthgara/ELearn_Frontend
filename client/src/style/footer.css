@@ -1,0 +1,11 @@
+.footer-container{
+    /* position: absolute; */
+    width: 100%;
+    /* bottom: 0;
+    left: 0; */
+}
+.footer{
+    height: 7vh;
+    background: #272C3F !important;
+    color: white !important;
+}

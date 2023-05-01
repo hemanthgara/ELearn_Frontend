@@ -8,7 +8,7 @@ const ViewQueries = () => {
   return (
     <>
       <div className="queries-container container mb-2">
-        <span className="fw-bold fs-4 px-4">Comments</span>
+        <span className="fw-bold fs-4 px-2">Comments</span>
         <div className="query-comment-list">
           <Comment />
         </div>

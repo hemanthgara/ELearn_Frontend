@@ -1,37 +1,39 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { axiosInstance } from "../helper/axiosInstance"
+import { axiosInstance } from "../helper/axiosInstance";
+import { clearCookies } from "./getCookie";
 
 const GetUser = () => {
+  const dispatch = useDispatch();
+  const { loggedInUser } = useSelector((state) => state.userReducer);
+  const [fetchingUser, setFetchingUser] = useState(true);
 
-    const dispatch = useDispatch();
-    const { loggedInUser } = useSelector(state => state.userReducer)
-    const [fetchingUser, setFetchingUser] = useState(true);
+  useEffect(() => {
+    (async () => {
+      const response = await axiosInstance.get("/api/me", {
+        withCredentials: true,
+      });
+      if (response?.data?.status >= 400) {
+        clearCookies();
+        setFetchingUser(false);
+      }
 
-    useEffect(() => {
-        
-            (async () => {
-                const response = await axiosInstance.get("/api/me", {
-                    withCredentials: true,
-                });
-                dispatch({ type: "ADD_ROLE", payload: response.data.data.role });
-                dispatch({
-                    type: "ADD_USER",
-                    payload: response.data.data,
-                });
-                window.user = response.data.data
-                dispatch({ type: "LOGIN", payload: true });
-                setFetchingUser(false)
+      dispatch({ type: "ADD_ROLE", payload: response.data.data.role });
+      dispatch({
+        type: "ADD_USER",
+        payload: response.data.data,
+      });
+      window.user = response.data.data;
+      dispatch({ type: "LOGIN", payload: true });
+      setFetchingUser(false);
+    })();
+  }, []);
 
-            })()
+  return {
+    loggedInUser,
+    fetchingUser,
+  };
+};
 
-    }, []);
-
-    return {
-        loggedInUser,
-        fetchingUser
-    }
-}
-
-export default GetUser
+export default GetUser;

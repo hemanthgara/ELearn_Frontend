@@ -1,0 +1,61 @@
+.facilitator-container {
+    min-height: 93.2vh;
+    padding-top: 75px;
+}
+.facilitator-container > div{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 20px;
+}
+
+.form-control {
+   font-size: 1.5rem !important;
+}
+
+.facilitator-container form {
+    font: 500 20px/24px Google Sans Text,Arial,Helvetica,sans-serif;
+}
+
+.facilitator-container .fpassword {
+   color: blue !important;
+}
+
+.form-check-input{
+    margin-top: 0 !important;
+}
+
+
+
+@media screen and (max-width: 1280px) {
+    .facilitator-container{
+        box-sizing: border-box;
+        /* padding-top: 100px; */
+          }
+  .facilitator-container > div{
+    width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+    .facilitator-container{
+        box-sizing: border-box;
+    }
+  .facilitator-container > div{
+    width: 100% !important;
+  }
+  .facilitator-container > div form {
+    padding-inline: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .facilitator-container{
+        box-sizing: border-box;
+    }
+  .facilitator-container > div{
+    width: 100% !important;
+  }
+
+  /* .facilitator-container > div form {
+    padding-inline: 1rem !important;
+  } */
+}

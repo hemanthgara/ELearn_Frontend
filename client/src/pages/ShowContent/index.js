@@ -6,10 +6,7 @@ import { getApi } from "../../helper/apiHelper";
 import { date } from "../../helper/date";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  FETCHING_CONTENT,
-  SHOW_CONTENT,
-} from "../../redux/types/couserTypes";
+import { FETCHING_CONTENT, SHOW_CONTENT } from "../../redux/types/couserTypes";
 
 import "../../style/showContent.css";
 
@@ -17,17 +14,22 @@ const ShowContent = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const { courseContent, fetchingContent } = useSelector((state) => state.contentReducer);
+  const { courseContent, fetchingContent } = useSelector(
+    (state) => state.contentReducer
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch({ type: FETCHING_CONTENT, payload: true });
     getApi(`/api/cource/videos/${id}`).then((res) => {
       dispatch({ type: SHOW_CONTENT, payload: res.data.data });
       dispatch({ type: FETCHING_CONTENT, payload: false });
     });
-  }, []);
 
+    return () => {
+      dispatch({ type: SHOW_CONTENT, payload: [] });
+      dispatch({ type: FETCHING_CONTENT, payload: true });
+    };
+  }, []);
 
   if (fetchingContent) {
     return (
@@ -59,20 +61,23 @@ const ShowContent = () => {
                 <div className="row g-0">
                   <div className="col-md-4 p-0">
                     <img
-                      src={process.env.REACT_APP_SERVER_URL + content.imageFile_URL}
+                      src={
+                        process.env.REACT_APP_SERVER_URL + content.imageFile_URL
+                      }
                       className="img-fluid rounded-start content-thumb"
                       alt="..."
                     />
-
                   </div>
-                  <div className="col-md-8" style={{ background: '#f0f0f0' }}>
+                  <div className="col-md-8" style={{ background: "#f0f0f0" }}>
                     <div className="card-body d-flex flex-column justify-content-between h-100">
                       <h5 className="card-title fw-bold">{content.title}</h5>
 
                       <div className="card-text d-flex justify-content-between align-items-center fw-bold">
                         <p className="m-0">
                           <small className="text-muted">
-                            {JSON.parse(JSON.stringify(date(content.createdAt)))}
+                            {JSON.parse(
+                              JSON.stringify(date(content.createdAt))
+                            )}
                           </small>
                         </p>
                         <a
@@ -81,7 +86,7 @@ const ShowContent = () => {
                           onClick={(e) => {
                             e.preventDefault();
                             navigate(
-                              `/videodetail/${content._id}`
+                              `/viewcourse/showcontent/videodetail/${content._id}`
                             );
                           }}
                         >

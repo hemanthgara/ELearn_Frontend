@@ -22,7 +22,7 @@ const Signup = () => {
   };
 
   const handleOnSubmit = async (values, resetForm) => {
-     await postApi(
+    await postApi(
       "/api/register",
       {
         email: values.email,
